@@ -1,10 +1,7 @@
-class User implements Printable {
-  final String _name;
+class User {
+  String name = '_name';
 
-  User(this._name);
-
-  @override
-  String toString() {
-    return 'Hello $_name';
+  String showName(){
+    return 'Hello $name';
   }
 }
