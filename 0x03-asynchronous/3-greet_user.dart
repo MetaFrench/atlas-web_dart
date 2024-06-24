@@ -3,28 +3,27 @@ import '3-util.dart';
 
 Future<String> greetUser() async {
   try {
-    final String jsonData = await fetchUserData();
-    final Map<String, dynamic> userData = json.decode(jsonData);
-    final String user = userData['username'];
-    return 'Hello, $user!';
+    String jsonData = await fetchUserData();
+    Map<String, dynamic> userData = json.decode(jsonData);
+    String user = userData['username'];
+    return('Hello $user');
   } catch (e) {
-    return 'Error caught: $e';
+    return('error caught: $e');
   }
 }
 
 Future<String> loginUser() async {
   try {
-    final bool isValid = await checkCredentials();
-    final String greetingMessage = await greetUser();
-
-    if (isValid) {
-      print('User authentication: true');
-      return greetingMessage;
+    bool creds = await checkCredentials();
+    String greetings = await greetUser();
+    if (creds == true) {
+      print('There is a user: true');
+      return greetings;
     } else {
-      print('User authentication: false');
-      return 'Wrong credentials';
+      print('There is a user: false');
+      return('Wrong credentials');
     }
   } catch (e) {
-    return 'Error caught: $e';
+    return('error caught: $e');
   }
-}
+} 
